@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case "$BLOCK_BUTTON" in
+	1) st -e htop ;;
+esac
+
+
+awk '
+/MemTotal/ {t=$2}
+/MemAvailable/ {a=$2}
+END {
+	used=(t-a)/1024/1024
+	total=t/1024/1024
+	printf "%.1f/%.1fG", used, total
+}
+' /proc/meminfo

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case "$BLOCK_BUTTON" in
+	1) notify-send "Disk space:" "$(df -h)" ;;
+esac
+
+
+
+df -h / | awk 'NR==2 {print "Root: " $3 "/" $2 " (" $5 ")"}'
