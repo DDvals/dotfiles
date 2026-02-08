@@ -1,0 +1,7 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/hatsunemiku.toml"
+]
+ 
+[window]
+decorations = "None"
