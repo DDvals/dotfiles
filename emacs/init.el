@@ -1,21 +1,22 @@
-
 (setq inhibit-startup-message t)
 
-(scroll-bar-mode -1)        ; Disable visible scrollbar
-(tool-bar-mode -1)          ; Disable the toolbar
-(tooltip-mode -1)           ; Disable tooltips
-(set-fringe-mode 10)        ; Give some breathing room
-
-(menu-bar-mode -1)            ; Disable the menu bar
+(scroll-bar-mode -1)                 ; Disable visible scrollbar
+(tool-bar-mode -1)                   ; Disable the toolbar
+(tooltip-mode -1)                    ; Disable tooltips
+(set-fringe-mode 10)                 ; Give some breathing room
+(menu-bar-mode -1)                   ; Disable the menu bar
+(which-key-mode 1)                   ; which-key mode
+(global-display-line-numbers-mode 1) ; show line numbers
 
 ;; Set up the visible bell
 (setq visible-bell t)
+;; Switch off sounds
 (setq ring-bell-function 'ignore)
 
 (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 110)
 
 (load-theme 'wombat)
-(which-key-mode 1)
+
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
