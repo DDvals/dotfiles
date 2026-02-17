@@ -16,23 +16,7 @@
 
 (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 110)
 
-;(load-theme 'wombat)
-;; Configure the Modus Themes' appearance
-(setq modus-themes-custom-auto-reload t
-      modus-themes-bold-constructs t
-      modus-themes-italic-constructs t
-      modus-themes-fringes 'subtle
-      modus-themes-paren-match '(bold intense)
-      modus-themes-prompts '(bold intense)
-      modus-themes-region '(bg-only)
-      modus-themes-scale-headings t
-      modus-themes-headings
-      '((1 . (overline background bold 1.4))
-        (2 . (background 1.3))
-        (3 . (bold 1.2))
-        (t . (semilight 1.1))))
-
-(load-theme 'modus-vivendi-deuteranopia t)
+(load-theme 'wombat)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -86,3 +70,8 @@
 ;  :ensure t
 ;  :init (doom-modeline-mode 1)
 ;  :custom ((doom-modeline-height 5)))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+
+  :custom ((doom-modeline-height 5)))
