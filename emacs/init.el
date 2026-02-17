@@ -66,12 +66,25 @@
   :config
   (ivy-mode 1))
 
-;(use-package doom-modeline
-;  :ensure t
-;  :init (doom-modeline-mode 1)
-;  :custom ((doom-modeline-height 5)))
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
 
   :custom ((doom-modeline-height 5)))
+
+;; LSP
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (prog-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+(setq lsp-eslint-auto-fix-on-save 1)
