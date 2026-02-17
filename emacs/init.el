@@ -52,7 +52,7 @@
   :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
+         ("TAB" . ivy-alt-done)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -74,17 +74,33 @@
 
 ;; LSP
 (use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :hook ((js-mode . lsp)
+         (typescript-mode . lsp))
   :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (prog-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+  :config
+  (setq lsp-enable-snippet t
+        lsp-prefer-flymake nil ; use flycheck
+	lsp-eslint-auto-fix-on-save t))
 
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
-(setq lsp-eslint-auto-fix-on-save 1)
+;; diagnostics
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+;; completition
+(use-package corfu
+  :ensure t
+  :init (global-corfu-mode))
+
+(add-hook 'lsp-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'lsp-format-buffer nil t)))
+
+
