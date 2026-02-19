@@ -26,13 +26,17 @@ ENABLE_CORRECTION="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# NVM
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions sudo copypath copyfile copybuffer
-	dirhistory tmux )
+	dirhistory tmux zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -50,6 +54,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval $(thefuck --alias)
+# pnpm
+export PNPM_HOME="~/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
