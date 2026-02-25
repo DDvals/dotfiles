@@ -1,3 +1,5 @@
+;;; package --- init.el
+
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)                 ; Disable visible scrollbar
@@ -56,38 +58,6 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-
   :custom ((doom-modeline-height 5)))
 
-;; LSP
-(use-package lsp-mode
-  :ensure t
-  :commands lsp
-  :hook ((js-mode . lsp)
-         (typescript-mode . lsp))
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (setq lsp-enable-snippet t
-        lsp-prefer-flymake nil ; use flycheck
-	lsp-eslint-auto-fix-on-save t))
-
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
-
-;; diagnostics
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-;; completition
-(use-package corfu
-  :ensure t
-  :init (global-corfu-mode))
-
-(add-hook 'lsp-mode-hook
-          (lambda ()
-            (add-hook 'before-save-hook #'lsp-format-buffer nil t)))
-
-
+(load "lsp.el")
