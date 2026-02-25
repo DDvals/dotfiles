@@ -11,6 +11,8 @@
 (ido-mode 1)                         ; autocompleter for files and buffers
 (global-display-line-numbers-mode 1) ; show line numbers
 (global-auto-revert-mode 1)          ; Revert buffers when the underlying file has changed
+(icomplete-mode 1)                   ; Autocompleter for files, buffers and commands
+(icomplete-vertical-mode 1)          ; icomplete vertical mode
 
 ;; Set up the visible bell
 (setq visible-bell t)
@@ -31,10 +33,6 @@
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
 
-;; IDO config
-(setq ido-enable-flex-matching t
-      ido-everywhere t)
-
 ;; Initialize package sources
 (require 'package)
 
@@ -50,6 +48,7 @@
 (unless (package-installed-p 'use-package)
    (package-install 'use-package))
 
+
 (require 'use-package)
 (setq use-package-always-ensure t)
 
@@ -60,10 +59,5 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 5)))
 
-;; Smex - Ido for M-x
-(use-package smex)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; old M-x
 
 (load "lsp.el")
