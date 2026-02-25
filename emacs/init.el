@@ -6,6 +6,7 @@
 (set-fringe-mode 10)                 ; Give some breathing room
 (menu-bar-mode -1)                   ; Disable the menu bar
 (which-key-mode 1)                   ; which-key mode
+(ido-mode 1)                         ; autocompleter for files and buffers
 (global-display-line-numbers-mode 1) ; show line numbers
 (global-auto-revert-mode 1)          ; Revert buffers when the underlying file has changed
 
@@ -27,6 +28,10 @@
  
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
+
+;; IDO config
+(setq ido-enable-flex-matching t
+      ido-everywhere t)
 
 ;; Initialize package sources
 (require 'package)
