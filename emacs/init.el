@@ -60,4 +60,10 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 5)))
 
+;; Smex - Ido for M-x
+(use-package smex)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; old M-x
+
 (load "lsp.el")
