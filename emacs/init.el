@@ -62,12 +62,16 @@
 (if (eq system-type 'windows-nt)
     (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe"
 	  shell-file-name "pwsh.exe"
-	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el")
+	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el"
+	  copilot-cfg-file-path "C:/Progetti/dotfiles/emacs/copilot.el")
   (setq explicit-shell-file-name "/usr/bin/zsh"
 	shell-file-name "zsh"
-	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el")
+	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el"
+	copilot-cfg-file-path "~/dotfiles/emacs/copilot.el")
   )
 
 (global-set-key [f1] 'shell)
 
 (load lsp-cfg-file-path)
+(load copilot-cfg-file-path)
+
