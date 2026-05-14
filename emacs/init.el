@@ -1,6 +1,7 @@
 ;;; package --- init.el
 
 (setq inhibit-startup-message t)
+(setq native-comp-async-report-warnings-errors 'silent)
 
 (scroll-bar-mode -1)                 ; Disable visible scrollbar
 (tool-bar-mode -1)                   ; Disable the toolbar

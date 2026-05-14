@@ -11,3 +11,8 @@
 
 (add-hook 'prog-mode-hook 'copilot-mode)
 (add-hook 'prog-mode-hook #'copilot-nes-mode)
+
+;; Silence "Request was canceled" noise (-32800 is JSON-RPC RequestCancelled,
+;; expected when typing faster than completions arrive)
+(require 'warnings)
+(add-to-list 'warning-suppress-types '(copilot))
