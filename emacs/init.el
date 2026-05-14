@@ -80,3 +80,12 @@
 (load lsp-cfg-file-path)
 (load copilot-cfg-file-path)
 
+;; Desktop mode (save and restore sessions)
+(use-package desktop
+  :ensure nil
+  :config
+  (setq desktop-auto-save-timeout 30)
+  (setq desktop-restore-eager 5)
+  (setq desktop-save 'if-exists)
+  (desktop-save-mode 1))
+
