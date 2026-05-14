@@ -23,6 +23,10 @@
 
 (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 110)
 
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
+(setq-default buffer-file-coding-system 'utf-8-unix)
+
 (load-theme 'wombat)
 
 ;; Make ESC quit prompts
