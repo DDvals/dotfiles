@@ -9,7 +9,8 @@
   :config
   (setq lsp-enable-snippet t
         lsp-prefer-flymake nil ; use flycheck
-	lsp-eslint-auto-fix-on-save t))
+	lsp-eslint-auto-fix-on-save t
+        lsp-completion-provider :none)) ; use corfu/capf, not company
 
 (setq lsp-javascript-server-command '("typescript-language-server" "--stdio"))
 (setq lsp-eslint-enable t)
