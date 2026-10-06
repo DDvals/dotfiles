@@ -1,0 +1,2 @@
+event=ac_adapter ACPI0003:00
+action=/etc/acpi/battery-update.sh
