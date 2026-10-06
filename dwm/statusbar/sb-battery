@@ -1,0 +1,32 @@
+#!/bin/sh
+
+BAT=/sys/class/power_supply/BAT0
+
+if [ ! -f "$BAT/present" ] || [ "$(cat "$BAT/present")" != "1" ]; then
+    printf '󰚥 AC\n'
+    exit
+fi
+
+capacity=$(cat "$BAT/capacity")
+status=$(cat "$BAT/status")
+
+case "$status" in
+    Charging)
+        icon="󰂄"
+        ;;
+    *)
+        if [ "$capacity" -ge 90 ]; then icon="󰁹"
+        elif [ "$capacity" -ge 80 ]; then icon="󰂂"
+        elif [ "$capacity" -ge 70 ]; then icon="󰂁"
+        elif [ "$capacity" -ge 60 ]; then icon="󰂀"
+        elif [ "$capacity" -ge 50 ]; then icon="󰁿"
+        elif [ "$capacity" -ge 40 ]; then icon="󰁾"
+        elif [ "$capacity" -ge 30 ]; then icon="󰁽"
+        elif [ "$capacity" -ge 20 ]; then icon="󰁼"
+        elif [ "$capacity" -ge 10 ]; then icon="󰁻"
+        else icon="󰂃"
+        fi
+        ;;
+esac
+
+printf '%s %s%%\n' "$icon" "$capacity"
