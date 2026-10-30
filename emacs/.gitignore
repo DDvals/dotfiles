@@ -2,4 +2,7 @@ custom-vars.el
 eln-cache
 elpa
 \#init.el#
+tree-sitter/
 transient
+.lsp-session*
+ido.last
