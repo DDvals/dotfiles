@@ -1,1 +1,9 @@
 eln-cache
+elpa/
+auto-save-list/
+transient/
+.emacs-desktop
+.desktop/
+straight/
+backups/
+trash/
