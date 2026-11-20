@@ -9,7 +9,6 @@
 (set-fringe-mode 10)                 ; Give some breathing room
 (menu-bar-mode -1)                   ; Disable the menu bar
 (which-key-mode 1)                   ; which-key mode
-(ido-mode 1)                         ; autocompleter for files and buffers
 (global-display-line-numbers-mode 1) ; show line numbers
 (global-auto-revert-mode 1)          ; Revert buffers when the underlying file has changed
 
@@ -19,8 +18,6 @@
 (setq delete-old-versions t)        ; delete excess backups silently
 (setq kept-new-versions 5)
 (setq kept-old-versions 2)
-(icomplete-mode 1)                   ; Autocompleter for files, buffers and commands
-(icomplete-vertical-mode 1)          ; icomplete vertical mode
 
 ;; Set up the visible bell
 (setq visible-bell t)
@@ -62,6 +59,34 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Completion: vertico (minibuffer) + orderless (fuzzy matching)
+(use-package vertico
+  :ensure t
+  :config
+  (setq vertico-cycle t)
+  (vertico-mode 1))
+
+;; Persist minibuffer history (vertico's M-p/M-n across sessions)
+(use-package savehist
+  :ensure nil
+  :config (savehist-mode 1))
+
+;; Annotations in the vertico list (docstrings, file sizes...)
+(use-package marginalia
+  :ensure t
+  :config (marginalia-mode 1))
+
+;; Space-separated, order-free matching for vertico and corfu
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; consult-* commands: M-x consult-buffer (better C-x b), consult-line etc.
+(use-package consult
+  :ensure t)
+
 (use-package command-log-mode)
 
 (use-package doom-modeline
@@ -80,7 +105,7 @@
 	copilot-cfg-file-path "~/dotfiles/emacs/copilot.el")
   )
 
-(global-set-key [f1] 'shell)
+(global-set-key (kbd "C-c s") 'shell) ; F1 keeps the default Emacs help prefix
 
 (load lsp-cfg-file-path)
 

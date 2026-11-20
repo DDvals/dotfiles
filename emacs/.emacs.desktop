@@ -1,0 +1,55 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Nov 20 19:51:34 2026
+;; Desktop file format version 208
+;; Emacs version 30.2
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (27392 38582 482453 847000) (desktop . "208") "danzi@blackomen" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-SRC-Hack Nerd Font Mono-regular-normal-normal-*-15-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 0) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#f6f3e8") (background-color . "#242424") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 10) (right-fringe . 10) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tab-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 16) (scroll-bar-height . 16) (alpha) (alpha-background) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#656565") (font-parameter) (environment) (sticky) (last-focus-update . t) (frameset--id . "7AA7-9603-FF75-10D8") (frameset--mini t . t) (height . 60) (width . 81) (modeline . t) (unsplittable) (left . 26) (top . 23) (icon-name) (display . "wayland-0") (explicit-name)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 5) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 72) (min-pixel-width . 90) (min-pixel-height-ignore . 36) (min-pixel-width-ignore . 45) (min-pixel-height-safe . 18) (min-pixel-width-safe . 18)) leaf (pixel-width . 749) (pixel-height . 1073) (total-width . 83) (total-height . 59) (normal-height . 1.0) (normal-width . 1.0) (buffer "init.el" (selected . t) (hscroll . 0) (fringes 10 10 nil nil) (margins nil) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 3526) (start . 2661)) (prev-buffers ("emacs" 1 523) ("dotfiles" 1 338) ("*scratch*" 1 148))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/dotfiles/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/danzi/dotfiles/emacs/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(font-lock-mode display-line-numbers-mode eldoc-mode flycheck-mode corfu-mode)
+  3526
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 27392 38256 494880 647000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "emacs"
+  'dired-mode
+  '(font-lock-mode display-line-numbers-mode)
+  523
+  '(nil nil)
+  t
+  '("/home/danzi/dotfiles/emacs/")
+  '((buffer-display-time 27392 38252 889412 365000))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  nil
+  "dotfiles"
+  'dired-mode
+  '(font-lock-mode display-line-numbers-mode)
+  338
+  '(nil nil)
+  t
+  '("/home/danzi/dotfiles/")
+  '((buffer-display-time 27392 38249 529155 185000))
+  '((mark-ring nil)))
+
