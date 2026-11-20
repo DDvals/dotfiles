@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 ;; LSP
 (use-package lsp-mode
   :ensure t
@@ -12,7 +13,6 @@
 	lsp-eslint-auto-fix-on-save t
         lsp-completion-provider :none)) ; use corfu/capf, not company
 
-(setq lsp-javascript-server-command '("typescript-language-server" "--stdio"))
 (setq lsp-eslint-enable t)
 
 (use-package lsp-ui
@@ -33,7 +33,7 @@
   :ensure t
   :init
   (global-corfu-mode)
-  (setq corfu-min-length 1) ; Autocompleter after one char
+  (setq corfu-auto-prefix 1) ; Autocomplete after one char (corfu docstring advises >= 2 for load reasons)
   (setq corfu-quit-no-match 'separator) ; Close the menu if there are not matches
   (setq corfu-cycle t) ; Cycle between suggestions
   (setq corfu-auto t)) ; Automatic active the completer
