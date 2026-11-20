@@ -1,4 +1,4 @@
-;;; package --- init.el
+;;; package --- init.el -*- lexical-binding: t -*-
 
 (setq inhibit-startup-message t)
 (setq native-comp-async-report-warnings-errors 'silent)
@@ -72,18 +72,15 @@
 (if (eq system-type 'windows-nt)
     (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe"
 	  shell-file-name "pwsh.exe"
-	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el"
-	  copilot-cfg-file-path "C:/Progetti/dotfiles/emacs/copilot.el")
+	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el")
   (setq explicit-shell-file-name "/usr/bin/zsh"
 	shell-file-name "zsh"
-	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el"
-	copilot-cfg-file-path "~/dotfiles/emacs/copilot.el")
+	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el")
   )
 
 (global-set-key [f1] 'shell)
 
 (load lsp-cfg-file-path)
-(load copilot-cfg-file-path)
 
 ;; Desktop mode (save and restore sessions)
 (use-package desktop
