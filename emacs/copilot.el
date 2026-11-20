@@ -27,8 +27,12 @@
           (text-mode 2)
           (org-mode 2))))
 
-(add-hook 'prog-mode-hook 'copilot-mode)
-(add-hook 'prog-mode-hook #'copilot-nes-mode)
+;; copilot-mode is hooked via the use-package :hook above
+
+;; NES (next edit suggestions) is experimental and only exists in recent
+;; versions of copilot.el — guard so startup doesn't break on older versions
+(when (fboundp 'copilot-nes-mode)
+  (add-hook 'prog-mode-hook #'copilot-nes-mode))
 
 ;; Silence "Request was canceled" noise (-32800 is JSON-RPC RequestCancelled,
 ;; expected when typing faster than completions arrive)

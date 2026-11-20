@@ -17,9 +17,7 @@
 
 ;; Set up the visible bell
 (setq visible-bell t)
-
-;; Switch off sounds
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function nil)      ; let visible-bell actually show
 
 (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 110)
 
@@ -86,6 +84,6 @@
   :config
   (setq desktop-auto-save-timeout 30)
   (setq desktop-restore-eager 5)
-  (setq desktop-save 'if-exists)
+  (setq desktop-save 'ask)
   (desktop-save-mode 1))
 
