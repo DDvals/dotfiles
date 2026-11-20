@@ -12,6 +12,13 @@
 (ido-mode 1)                         ; autocompleter for files and buffers
 (global-display-line-numbers-mode 1) ; show line numbers
 (global-auto-revert-mode 1)          ; Revert buffers when the underlying file has changed
+
+;; Keep backup files (~) in a central dir instead of next to the originals
+(setq backup-directory-alist '((".*" . "~/.backup/emacs/")))
+(setq backup-by-copying t)          ; don't clobber symlinks
+(setq delete-old-versions t)        ; delete excess backups silently
+(setq kept-new-versions 5)
+(setq kept-old-versions 2)
 (icomplete-mode 1)                   ; Autocompleter for files, buffers and commands
 (icomplete-vertical-mode 1)          ; icomplete vertical mode
 
