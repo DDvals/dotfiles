@@ -2,7 +2,8 @@ eln-cache
 elpa/
 auto-save-list/
 transient/
-.emacs-desktop
+.emacs.desktop
+emacs.desktop.lock
 .desktop/
 straight/
 backups/
