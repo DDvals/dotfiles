@@ -1,7 +1,13 @@
-;;; package --- init.el
+;;; package --- init.el -*- lexical-binding: t -*-
 
 (setq inhibit-startup-message t)
 (setq native-comp-async-report-warnings-errors 'silent)
+
+;; Silence "Missing 'lexical-binding' cookie" warnings from distro
+;; site-start.d files (/usr/share/emacs/site-lisp); warning type is
+;; (files missing-lexbind-cookie <file>) — we suppress only that subtype
+(require 'warnings)
+(add-to-list 'warning-suppress-types '(files missing-lexbind-cookie))
 
 (scroll-bar-mode -1)                 ; Disable visible scrollbar
 (tool-bar-mode -1)                   ; Disable the toolbar
@@ -9,17 +15,19 @@
 (set-fringe-mode 10)                 ; Give some breathing room
 (menu-bar-mode -1)                   ; Disable the menu bar
 (which-key-mode 1)                   ; which-key mode
-(ido-mode 1)                         ; autocompleter for files and buffers
 (global-display-line-numbers-mode 1) ; show line numbers
 (global-auto-revert-mode 1)          ; Revert buffers when the underlying file has changed
-(icomplete-mode 1)                   ; Autocompleter for files, buffers and commands
-(icomplete-vertical-mode 1)          ; icomplete vertical mode
+
+;; Keep backup files (~) in a central dir instead of next to the originals
+(setq backup-directory-alist '((".*" . "~/.backup/emacs/")))
+(setq backup-by-copying t)          ; don't clobber symlinks
+(setq delete-old-versions t)        ; delete excess backups silently
+(setq kept-new-versions 5)
+(setq kept-old-versions 2)
 
 ;; Set up the visible bell
 (setq visible-bell t)
-
-;; Switch off sounds
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function nil)      ; let visible-bell actually show
 
 (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 110)
 
@@ -57,6 +65,34 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Completion: vertico (minibuffer) + orderless (fuzzy matching)
+(use-package vertico
+  :ensure t
+  :config
+  (setq vertico-cycle t)
+  (vertico-mode 1))
+
+;; Persist minibuffer history (vertico's M-p/M-n across sessions)
+(use-package savehist
+  :ensure nil
+  :config (savehist-mode 1))
+
+;; Annotations in the vertico list (docstrings, file sizes...)
+(use-package marginalia
+  :ensure t
+  :config (marginalia-mode 1))
+
+;; Space-separated, order-free matching for vertico and corfu
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; consult-* commands: M-x consult-buffer (better C-x b), consult-line etc.
+(use-package consult
+  :ensure t)
+
 (use-package command-log-mode)
 
 (use-package doom-modeline
@@ -67,18 +103,15 @@
 (if (eq system-type 'windows-nt)
     (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe"
 	  shell-file-name "pwsh.exe"
-	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el"
-	  copilot-cfg-file-path "C:/Progetti/dotfiles/emacs/copilot.el")
+	  lsp-cfg-file-path "C:/Progetti/dotfiles/emacs/lsp.el")
   (setq explicit-shell-file-name "/usr/bin/zsh"
 	shell-file-name "zsh"
-	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el"
-	copilot-cfg-file-path "~/dotfiles/emacs/copilot.el")
+	lsp-cfg-file-path "~/dotfiles/emacs/lsp.el")
   )
 
-(global-set-key [f1] 'shell)
+(global-set-key (kbd "C-c s") 'shell) ; F1 keeps the default Emacs help prefix
 
 (load lsp-cfg-file-path)
-(load copilot-cfg-file-path)
 
 ;; Desktop mode (save and restore sessions)
 (use-package desktop
@@ -86,6 +119,6 @@
   :config
   (setq desktop-auto-save-timeout 30)
   (setq desktop-restore-eager 5)
-  (setq desktop-save 'if-exists)
+  (setq desktop-save 'ask)
   (desktop-save-mode 1))
 
