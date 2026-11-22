@@ -13,7 +13,7 @@
   :commands lsp
   :hook ((js-mode . lsp)
          (typescript-mode . lsp)
-         (typescript-tsx-mode . lsp)))
+         (typescript-tsx-mode . lsp))
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
