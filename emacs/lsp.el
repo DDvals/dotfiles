@@ -1,19 +1,45 @@
 ;;; -*- lexical-binding: t -*-
 ;; LSP
 
-;; TypeScript: third-party major mode for .ts/.tsx (not built into Emacs 30),
-;; must be installed explicitly — the lsp hooks below reference its modes
+;; Tree-sitter modes for JavaScript and TypeScript (preferred: richer,
+;; syntax-tree-based highlighting; grammars install with
+;; M-x treesit-install-language-grammar on first use). The auto-mode
+;; entries below are added after typescript-mode's so tree-sitter wins.
+(require 'subr-x)
+
 (use-package typescript-mode
   :ensure t
-  :mode (("\\.ts\\'" . typescript-mode)
+  :mode (("\\.ts\\'" . typescript-mode)          ; classic fallback if grammars are missing
          ("\\.tsx\\'" . typescript-tsx-mode)))
+
+(setq treesit-language-source-alist
+      '((javascript "https://github.com/tree-sitter/tree-sitter-javascript")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+        (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")))
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+
+;; Expose the active nvm toolchain to Emacs subprocesses (work machine).
+(when (and (eq system-type 'gnu/linux)
+           (file-directory-p (expand-file-name "~/.nvm")))
+  (let* ((node-path (string-trim (shell-command-to-string "zsh -ic 'nvm which current'")))
+         (node-bin (and (file-executable-p node-path)
+                        (file-name-directory node-path))))
+    (when node-bin
+      (add-to-list 'exec-path node-bin)
+      (setenv "PATH" (concat node-bin path-separator (getenv "PATH"))))))
 
 (use-package lsp-mode
   :ensure t
   :commands lsp
   :hook ((js-mode . lsp)
+         (js-ts-mode . lsp)
          (typescript-mode . lsp)
-         (typescript-tsx-mode . lsp))
+         (typescript-ts-mode . lsp)
+         (typescript-tsx-mode . lsp)
+         (tsx-ts-mode . lsp))
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
