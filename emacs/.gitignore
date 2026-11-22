@@ -1,5 +1,6 @@
 eln-cache
 elpa/
+history
 auto-save-list/
 transient/
 .emacs.desktop
