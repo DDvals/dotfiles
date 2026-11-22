@@ -3,6 +3,12 @@
 (setq inhibit-startup-message t)
 (setq native-comp-async-report-warnings-errors 'silent)
 
+;; Silence "Missing 'lexical-binding' cookie" warnings from distro
+;; site-start.d files (/usr/share/emacs/site-lisp); warning type is
+;; (files missing-lexbind-cookie <file>) — we suppress only that subtype
+(require 'warnings)
+(add-to-list 'warning-suppress-types '(files missing-lexbind-cookie))
+
 (scroll-bar-mode -1)                 ; Disable visible scrollbar
 (tool-bar-mode -1)                   ; Disable the toolbar
 (tooltip-mode -1)                    ; Disable tooltips
