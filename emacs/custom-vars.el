@@ -6,7 +6,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(command-log-mode compat copilot corfu consult doom-modeline flycheck lsp-mode
-		      lsp-ui marginalia orderless vertico)))
+		      lsp-ui marginalia orderless typescript-mode vertico)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

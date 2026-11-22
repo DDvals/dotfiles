@@ -1,10 +1,19 @@
 ;;; -*- lexical-binding: t -*-
 ;; LSP
+
+;; TypeScript: third-party major mode for .ts/.tsx (not built into Emacs 30),
+;; must be installed explicitly — the lsp hooks below reference its modes
+(use-package typescript-mode
+  :ensure t
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-tsx-mode)))
+
 (use-package lsp-mode
   :ensure t
   :commands lsp
   :hook ((js-mode . lsp)
-         (typescript-mode . lsp))
+         (typescript-mode . lsp)
+         (typescript-tsx-mode . lsp)))
   :init
   (setq lsp-keymap-prefix "C-c l")
   :config
